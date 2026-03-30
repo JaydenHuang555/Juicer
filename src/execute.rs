@@ -67,7 +67,9 @@ pub fn execute(action: &Action, profile: &Profile) -> Option<ExitCode> {
         }
         Action::List => match client.listdir(profile.logs().as_path()) {
             Ok(files) => {
-                println!("{:?}", files);
+                for file in files {
+                    println!("{:?}", file);
+                }
             }
             Err(e) => {
                 eprintln!("Unable to list files due to {}", e);
