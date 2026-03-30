@@ -35,7 +35,7 @@ pub struct DownloadInputs {
 
     #[clap(long, short)]
     #[clap(alias = "remote")]
-    #[clap(required_if_eq("mode", "last-modified"))]
+    #[clap(required_if_eq("mode", "select"))]
     pub log_name: Option<String>,
 
     #[clap(long, short)]

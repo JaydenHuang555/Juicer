@@ -19,13 +19,19 @@ pub fn connect(profile: &Profile) -> Result<Client, ExitCode> {
         eprintln!("Failed to spawn client due to {}", e);
         return Err(ExitCode::from(20));
     }
+    println!("Able to spawn client");
     return Ok(spawn.unwrap());
 }
 
 pub fn download(inputs: &DownloadInputs, profile: &Profile, client: &Client) -> Option<ExitCode> {
     match inputs.mode {
         DownloadMode::First => {}
-        DownloadMode::Select => {}
+        DownloadMode::Select => {
+            let path = profile
+                .logs()
+                .join(inputs.log_name.clone().unwrap())
+                .with_extension(".wpilog");
+        }
         DownloadMode::LastModified => {
             let log_paths = profile.logs();
             let last_operation = client.last_mod_file(log_paths.as_path());
@@ -59,7 +65,15 @@ pub fn execute(action: &Action, profile: &Profile) -> Option<ExitCode> {
                 return Some(e);
             }
         }
-        Action::List => {}
+        Action::List => match client.listdir(profile.logs().as_path()) {
+            Ok(files) => {
+                println!("{:?}", files);
+            }
+            Err(e) => {
+                eprintln!("Unable to list files due to {}", e);
+                return Some(ExitCode::from(91));
+            }
+        },
     }
     return None;
 }
