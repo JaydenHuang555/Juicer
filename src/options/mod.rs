@@ -21,7 +21,7 @@ impl ToString for DownloadMode {
         match self {
             Self::Select => "select",
             Self::First => "first",
-            Self::LastModified => "last-mod",
+            Self::LastModified => "last-modified",
         }
         .to_string()
     }
