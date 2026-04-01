@@ -1,5 +1,7 @@
 use std::process::ExitCode;
 
+pub mod scan;
+
 use directories::ProjectDirs;
 use fetchlib::client::Client;
 use fetchlib::inputs::Inputs;
@@ -53,6 +55,10 @@ pub fn download(inputs: &DownloadInputs, profile: &Profile, client: &Client) -> 
     None
 }
 
+pub fn scan(client: &Client, profile: &Profile) -> Option<ExitCode> {
+    None
+}
+
 pub fn execute(action: &Action, profile: &Profile) -> Option<ExitCode> {
     let connect = connect(profile);
     if let Err(e) = connect {
@@ -76,6 +82,7 @@ pub fn execute(action: &Action, profile: &Profile) -> Option<ExitCode> {
                 return Some(ExitCode::from(91));
             }
         },
+        Action::Scan => {}
     }
     return None;
 }

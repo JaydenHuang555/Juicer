@@ -47,6 +47,7 @@ pub struct DownloadInputs {
 pub enum Action {
     List,
     Download(DownloadInputs),
+    Scan,
 }
 
 #[derive(Debug, Clone, clap::ValueEnum)]
