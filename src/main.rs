@@ -7,6 +7,7 @@ use crate::{options::Options, team_number::TeamNumber};
 pub mod config;
 pub mod controller;
 pub mod execute;
+pub mod input;
 pub mod juicer;
 pub mod options;
 pub mod paths;

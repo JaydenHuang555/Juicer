@@ -1,5 +1,6 @@
 use std::process::ExitCode;
 
+pub mod interactions;
 pub mod scan;
 
 use directories::ProjectDirs;
@@ -55,11 +56,10 @@ pub fn download(inputs: &DownloadInputs, profile: &Profile, client: &Client) -> 
     None
 }
 
-pub fn scan(client: &Client, profile: &Profile) -> Option<ExitCode> {
-    None
-}
-
 pub fn execute(action: &Action, profile: &Profile) -> Option<ExitCode> {
+    if *action == Action::Scan {
+        return crate::execute::scan::scan(profile);
+    }
     let connect = connect(profile);
     if let Err(e) = connect {
         return Some(e);
@@ -82,7 +82,7 @@ pub fn execute(action: &Action, profile: &Profile) -> Option<ExitCode> {
                 return Some(ExitCode::from(91));
             }
         },
-        Action::Scan => {}
+        _ => {}
     }
     return None;
 }

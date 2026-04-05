@@ -9,7 +9,7 @@ use clap::ValueHint;
 
 pub use crate::options::passed_profiled::PassedProfile;
 
-#[derive(clap::ValueEnum, Clone, Debug)]
+#[derive(clap::ValueEnum, Clone, Debug, PartialEq)]
 pub enum DownloadMode {
     Select,
     LastModified,
@@ -27,7 +27,7 @@ impl ToString for DownloadMode {
     }
 }
 
-#[derive(clap::Args, Clone, Debug)]
+#[derive(clap::Args, Clone, Debug, PartialEq)]
 pub struct DownloadInputs {
     #[clap(long, short)]
     #[clap(default_value_t = DownloadMode::LastModified)]
@@ -43,7 +43,7 @@ pub struct DownloadInputs {
     pub destination: PathBuf,
 }
 
-#[derive(Subcommand, Clone, Debug)]
+#[derive(Subcommand, Clone, Debug, PartialEq)]
 pub enum Action {
     List,
     Download(DownloadInputs),
