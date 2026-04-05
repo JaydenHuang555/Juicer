@@ -8,7 +8,7 @@ use std::{
 use fetchlib::inputs::Inputs;
 use serde::{Deserialize, Serialize};
 
-use crate::{controller::Controller, team_number::TeamNumber};
+use crate::util::frc::{Controller, team_number::TeamNumber};
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Profile {

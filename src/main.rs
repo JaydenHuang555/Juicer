@@ -5,14 +5,13 @@ use clap::Parser;
 use crate::{options::Options, team_number::TeamNumber};
 
 pub mod config;
-pub mod controller;
 pub mod execute;
 pub mod juicer;
 pub mod options;
 pub mod paths;
 pub mod profile;
 pub mod sync;
-pub mod team_number;
+pub mod util;
 
 fn main() -> ExitCode {
     let options = Options::parse();
