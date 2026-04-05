@@ -1,6 +1,8 @@
 use std::path::PathBuf;
 
-use crate::{controller::ControllerType, profile::Profile, team_number::TeamNumber};
+use crate::profile::Profile;
+
+use crate::util::frc::{ControllerType, TeamNumber};
 
 #[derive(clap::Args, Clone, Debug)]
 pub struct PassedProfile {

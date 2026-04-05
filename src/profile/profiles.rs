@@ -2,11 +2,9 @@ use std::{path::PathBuf, str::FromStr};
 
 use once_cell::sync::OnceCell;
 
-use crate::{
-    controller::{self, Controller},
-    profile::Profile,
-    team_number::TeamNumber,
-};
+use crate::profile::Profile;
+
+use crate::util::frc::{Controller, TeamNumber, controller};
 
 pub static CITRUS_CIRCUITS: OnceCell<Profile> = OnceCell::new();
 
