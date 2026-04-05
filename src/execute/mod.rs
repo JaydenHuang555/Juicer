@@ -56,6 +56,27 @@ pub fn execute(action: &Action, profile: &Profile) -> Option<ExitCode> {
                 return Some(ExitCode::from(91));
             }
         },
+        Action::Size => {
+            let log_path = profile.logs();
+            match sftp.file_metadata(log_path.as_path()) {
+                Ok(data) => {
+                    if let Some(size) = data.size {
+                        println!("Size for log dir ({}): {}", log_path.display(), size);
+                    } else {
+                        eprintln!("Unable to get size from meta data due to it being empty");
+                        return Some(ExitCode::from(13));
+                    }
+                }
+                Err(e) => {
+                    eprintln!(
+                        "Unable to get meta data for {} due to {}",
+                        log_path.display(),
+                        e
+                    );
+                    return Some(ExitCode::from(13));
+                }
+            }
+        }
     }
     return None;
 }
