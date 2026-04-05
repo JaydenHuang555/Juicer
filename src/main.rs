@@ -2,7 +2,7 @@ use std::process::ExitCode;
 
 use clap::Parser;
 
-use crate::{options::Options, team_number::TeamNumber};
+use crate::options::Options;
 
 pub mod config;
 pub mod execute;
